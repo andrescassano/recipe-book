@@ -21,9 +21,7 @@ export class DataStorageService {
         'https://recipe-book-d1efb.firebaseio.com/recipes.json',
         recipes
       )
-      .subscribe(response => {
-        console.log(response);
-      });
+      .subscribe();
   }
 
   fetchRecipes() {
