@@ -9,6 +9,11 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core.module';
 import { StoreModule } from '@ngrx/store';
 import * as fromRoot from './store/app.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './auth/store/auth.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { StoreRouterConnectingModule } from '@ngrx/router-store'
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
@@ -18,7 +23,10 @@ import * as fromRoot from './store/app.reducer';
     AppRoutingModule,
     SharedModule,
     CoreModule,
-    StoreModule.forRoot(fromRoot.appReducer)
+    StoreModule.forRoot(fromRoot.appReducer),
+    EffectsModule.forRoot([AuthEffects]),
+    StoreDevtoolsModule.instrument({ logOnly: environment.production }),
+    StoreRouterConnectingModule.forRoot()
   ],
   bootstrap: [AppComponent]
 })
